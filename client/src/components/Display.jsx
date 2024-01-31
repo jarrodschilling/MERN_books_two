@@ -39,6 +39,8 @@ const Display = (props) => {
                         <th>Author</th>
                         <th>Pages</th>
                         <th>Available</th>
+                        <th>Book Detail</th>
+                        <th>Borrow Book</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,7 +56,8 @@ const Display = (props) => {
                                     book.isAvailable? "Yes": "No"
                                 }
                                 </td>
-                                <td><button onClick={(e)=>deleteHandler(book._id)}>Delete</button></td>
+                                <td><button><Link className="contLink" to={`/books/${book._id}/details`}>Book Detail</Link></button></td>
+                                <td><button onClick={(e)=>deleteHandler(book._id)}>Borrow Book</button></td>
                             </tr>
                         )
                     )}

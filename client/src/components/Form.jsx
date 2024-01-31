@@ -59,17 +59,19 @@ const Form = (props) => {
 
 
     return(
-        <div>
+        <div className="formContainer">
             <form onSubmit={handleSubmit}>
-                <label htmlFor="bookTitle">Title: </label>
+                <label htmlFor="bookTitle">Title</label>
                 <input type="text" name="bookTitle" id="bookTitle" value={bookTitle} onChange={handleTitle}/>
-                <label htmlFor="bookAuthor">Author: </label>
+                <label htmlFor="bookAuthor">Author</label>
                 <input type="text" name="bookAuthor" id="bookAuthor" value={bookAuthor} onChange={handleAuthor}/>
-                <label htmlFor="bookPages"># of Pages: </label>
-                <input type="text" name="bookPages" id="bookPages" value={bookPages} onChange={handlePages}/>
-                <label htmlFor="isAvailable">Is Available: </label>
-                <input type="checkbox" name="isAvailable" id="isAvailable" checked={isAvailable} onChange={handleAvailable}/>
-                <button>Add Book</button>
+                <label htmlFor="bookPages">Page Count</label>
+                <input type="number" name="bookPages" id="bookPages" value={bookPages} onChange={handlePages}/>
+                <div className="available">
+                    <label htmlFor="isAvailable">Is Available?     </label>
+                    <input type="checkbox" name="isAvailable" id="isAvailable" checked={isAvailable} onChange={handleAvailable}/>
+                </div>
+                <button className="addBook">Add Book</button>
             </form>
         </div>
     )
