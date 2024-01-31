@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import Display from "../components/Display";
+import NavBar from "../components/NavBar";
 import axios from 'axios';
 
 const Home = (props) => {
+    const pageTitle = "Book Catalog"
 
     return(
         <div>
-            <h1>Books</h1>
-            <Link to="/create">Add New Book</Link>
+            <NavBar pageTitle={pageTitle} />
             <Display />
         </div>
     )

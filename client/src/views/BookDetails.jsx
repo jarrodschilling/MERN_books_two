@@ -1,11 +1,21 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import NavBar from "../components/NavBar";
 import axios from "axios";
 
 const BookDetails = (props) => {
     const [book, setBook] = useState({});
 
     const {id} = useParams();
+    const navigate = useNavigate()
+
+    const deleteHandler = (idForDeletion) => {
+        axios.delete(`http://localhost:8000/api/books/${idForDeletion}`)
+            .then((res)=>{
+                console.log(res.data)
+                navigate("/")
+            })
+    }
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/books/${id}`)
@@ -19,15 +29,20 @@ const BookDetails = (props) => {
     }, [id])
 
     return(
-        <div>
-            <h1>{book.bookTitle}</h1>
-            <h2>{book.bookAuthor}</h2>
-            <p>Pages: {book.bookPages}</p>
-            <p>Available:</p>
-            {
-                book.isAvailable? "yes": "no"
-            }
-        </div>
+        <>
+            <NavBar pageTitle={book.bookTitle} />
+            <div className="detailContainer">
+                <h1>{book.bookTitle}</h1>
+                <h2>{book.bookAuthor}</h2>
+                <p>Pages: {book.bookPages}</p>
+                <p>Available:
+                {
+                    book.isAvailable? " Yes": " No"
+                }
+                </p>
+                <button onClick={(e)=>deleteHandler(book._id)}>Borrow Book</button>
+            </div>
+        </>
     )
 }
 
